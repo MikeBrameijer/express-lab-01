@@ -35,7 +35,7 @@ cartItem.post("/cart-items", (req, res) => {
 cartItem.put("/cart-items/:id", (req, res) => {
 
     pool.query('UPDATE shopping_cart SET quantity=$1::int WHERE id=$2::int',
-        [req.body.quantity, req.body.id])
+        [req.body.quantity, req.params.id])
         .then( (result) => {
             res.send("update made.");
         })

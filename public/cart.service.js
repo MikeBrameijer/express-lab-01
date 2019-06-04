@@ -5,7 +5,7 @@ function CartService($http, $q) {
     service.getCart = () => {
         return $q(function (resolve, reject) {
             $http.get('/cart-items')
-                .then((response) => {
+                .then((response) => { //response is equal to result.rows from the cartItems.js
                     console.log("got it")
                     console.log(response.data);
                     resolve(response.data);
@@ -16,12 +16,19 @@ function CartService($http, $q) {
                 })
         })
     }
+    // the top is a shorthand or alt way of writting the following  
+    //return $http({
+    //     url: "/cart-items",
+    //     method: "get"
+    // }).then((response) =>{
+    //     resolve(response.data);
+    // })
 
     service.removeItem = (id) => {
         return $http({
             url: "/cart-items/" + id,
             method: "DELETE"
-        }).then((response) => {
+        }).then((response) => { 
             return response.data;
         });
     }
